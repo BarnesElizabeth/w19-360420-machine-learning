@@ -251,6 +251,26 @@ public class DataSet {
   // TASK 4: make a method here called distanceEuclid 
 
   ////////////////////////////////////////////////////////////////////////////
+public static double distanceEuclid(double[] X1, double[] X2){
+	if(X1.length != X2.length){
+		System.out.println("the arrays have different lengths, there will be problems");
+		return -10000;
+		}
+	else{
+		double squareSum = 0;
+		double diffSquared = 0;
+		for(int i=0; i<X1.length; i++){
+			diffSquared = Math.pow((X1[i]-X2[i]),2);
+			//System.out.println(diffSquared);
+			squareSum = squareSum + diffSquared;
+			//System.out.println(squareSum);
+		}
+		
+		double distance = Math.sqrt(squareSum);
+		//System.out.println(distance);
+		return distance;
+	}
 
+}
 
 }

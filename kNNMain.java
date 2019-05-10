@@ -44,7 +44,11 @@ public class kNNMain{
 
     // TASK 4: write a new method in DataSet.java which takes as arguments to DataPoint objects,
     // and returns the Euclidean distance between those two points (as a double)
-
+	double[] X1 = testData.get(0).getX();
+	double[] X2 = testData.get(1).getX();
+	double d = DataSet.distanceEuclid(X1, X2);
+	
+	System.out.println(d);
 
 
     // TASK 5: Use the KNNClassifier class to determine the k nearest neighbors to a given DataPoint,
