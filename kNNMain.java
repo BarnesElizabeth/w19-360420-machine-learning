@@ -13,30 +13,28 @@ public class kNNMain{
 
 	List <DataPoint> allTheData = DataSet.readDataSet(args[0]);
 		
-			String label = allTheData.get(0).getLabel();
-			double[] X = allTheData.get(0).getX();	
+	String label = allTheData.get(0).getLabel();
+	double[] X = allTheData.get(0).getX();	
 			
-				for(int i=0; i<X.length; i++){ 
+	for(int i=0; i<X.length; i++){System.out.print(X[i] +"\t");}
+	System.out.println(label);
 			
-					System.out.print(X[i] +"\t");
-		
-				}
-				System.out.println(label);
-			
-
+	double train = 0.2; // the % of data to reserve for later
 
     //TASK 2:Use the DataSet class to split the fullDataSet into Training and Held Out Test Dataset
-	List<DataPoint> testData = DataSet.getTestSet(allTheData, 0.8); //will train with 80% of data
+	List<DataPoint> testData = DataSet.getTestSet(allTheData, train); 
 	String testLabel = testData.get(0).getLabel();
-	double[] TestX = testData.get(0).getX();	
+	double[] testX = testData.get(0).getX();	
 			
-				for(int i=0; i<TestX.length; i++){ 
-			
-					System.out.print(TestX[i] +"\t");
-		
-				}
-				System.out.println(testLabel);
+	for(int i=0; i<testX.length; i++){System.out.print(testX[i] +"\t");}
+	System.out.println(testLabel);
 
+	List<DataPoint> trainData = DataSet.getTrainingSet(allTheData, (1-train)); //will train with ohter set of data
+	String trainLabel = trainData.get(0).getLabel();
+	double[] trainX = trainData.get(0).getX();	
+			
+	for(int i=0; i<trainX.length; i++){System.out.print(trainX[i] +"\t");}
+	System.out.println(trainLabel);
 
     // TASK 3: Use the DataSet class methods to plot the 2D data (binary and multi-class)
 
@@ -44,8 +42,8 @@ public class kNNMain{
 
     // TASK 4: write a new method in DataSet.java which takes as arguments to DataPoint objects,
     // and returns the Euclidean distance between those two points (as a double)
-	double[] X1 = testData.get(0).getX();
-	double[] X2 = testData.get(1).getX();
+	double[] X1 = trainData.get(0).getX();
+	double[] X2 = trainData.get(1).getX();
 	double d = DataSet.distanceEuclid(X1, X2);
 	
 	System.out.println(d);
