@@ -9,7 +9,7 @@ public class kNNMain{
 
 	public static void main(String... args) throws FileNotFoundException{
 
-for(int k = 1; k<=10; k++){
+for(int k = 1; k<20; k+=2){
 
 	int repetitions = 1000;
 	
@@ -72,7 +72,7 @@ for(int k = 1; k<=10; k++){
 	
 		for(i = 0; i<testData.size(); i++){
 			prediction = myNewClassifier.predict(trainData, testData.get(i));
-			answer = trainData.get(i).getLabel();
+			answer = testData.get(i).getLabel();
 			
 //			System.out.print("prediction: " + prediction);
 //			System.out.print("\t\t\tanswer: " + answer);
