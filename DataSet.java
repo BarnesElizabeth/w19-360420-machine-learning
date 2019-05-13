@@ -251,7 +251,10 @@ public class DataSet {
   // TASK 4: make a method here called distanceEuclid 
 
   ////////////////////////////////////////////////////////////////////////////
-public static double distanceEuclid(double[] X1, double[] X2){
+public static double distanceEuclid(DataPoint firstThing, DataPoint secondThing){
+	double[] X1 = firstThing.getX();
+	double[] X2 = secondThing.getX();
+	
 	if(X1.length != X2.length){
 		System.out.println("the arrays have different lengths, there will be problems");
 		return -10000;
