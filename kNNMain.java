@@ -8,15 +8,18 @@ import java.util.Scanner;
 public class kNNMain{
 
 	public static void main(String... args) throws FileNotFoundException{
+
+for(int k = 1; k<=10; k++){
+
 	int repetitions = 1000;
 	
-	
+	/** (the k value is controlled by the for loop)
 	int k = 5;
 	Scanner keyboard = new Scanner(System.in);
 	System.out.print("k: ");
 	
 	k = keyboard.nextInt();
-	
+	**/
 
 	double[] accuracy = new double[repetitions];
 	double[] precision = new double[repetitions];
@@ -116,12 +119,14 @@ public class kNNMain{
 	
 	
 	for(int i=0; i<accuracy.length; i++){
-		System.out.print(accuracy[i] + ", ");
+//		System.out.print(accuracy[i] + ", ");
 	}
 		
-	System.out.println("\nACCURACY\nmean: " + mean(accuracy) + "\nstandard deviation: " + standardDeviation(accuracy));
-	System.out.println("\nPRECISION\nmean: " + mean(precision) + "\nstandard deviation: " + standardDeviation(precision));
-	System.out.println("\nRECALL\nmean: " + mean(recall) + "\nstandard deviation: " + standardDeviation(recall));
+	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
+	System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
+	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
+	
+	}
 	
   } // main
 
