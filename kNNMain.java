@@ -108,7 +108,7 @@ for(int k = 1; k<20; k+=2){
 		
 		
 		
-		accuracy[r] = (correct *100/i);
+		accuracy[r] = (correct *100/testData.size());
 		precision[r] = (malignantMalignant*100/predictedMalignant);
 		recall[r] =  (malignantMalignant*100/actuallyMalignant);
 		
@@ -119,7 +119,7 @@ for(int k = 1; k<20; k+=2){
 	
 	
 	for(int i=0; i<accuracy.length; i++){
-//		System.out.print(accuracy[i] + ", ");
+		System.out.print(accuracy[i] + ", ");
 	}
 		
 	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
