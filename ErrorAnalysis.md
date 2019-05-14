@@ -43,7 +43,6 @@
 	accuracy[r] = (correct *100/testData.size());
 	precision[r] = (malignantMalignant*100/predictedMalignant);
 	recall[r] =  (malignantMalignant*100/actuallyMalignant);
-end
 ```
 
 <p>
@@ -51,9 +50,7 @@ end
 	since they would both be equal to 1. 
 	The changes in all three analytical measures (accuracy, precision and recall) are affected by the value of k.
 </p>
-<img src="G1_accuracy.png">
-<img src="G2_precision.png">
-<img src="G3_recall.png">
+
 
 
 ## Results
@@ -65,6 +62,7 @@ end
 	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
 	System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
 	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
-end
 ```
-
+<img src="G1_accuracy.png">
+<img src="G2_precision.png">
+<img src="G3_recall.png">
