@@ -58,6 +58,4 @@ Based on graphs 1 and 3, the classifier works optimally when `k = 3`.
 	System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
 	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
 ```
-<img src="G1_accuracy.png" width = "50%">
-<img src="G2_precision.png" width = "50%">
-<img src="G3_recall.png" width = "50%">
+<img src="G1_accuracy.png" width = "33%"><img src="G2_precision.png" width = "33%"><img src="G3_recall.png" width = "33%">
