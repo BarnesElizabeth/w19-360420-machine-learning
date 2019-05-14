@@ -5,18 +5,18 @@
 ## Distributions of Model Accuracy
 
 <p>
-	Lines 148-150 of DataSet.java call on the shuffle method, 
+	Lines 148-150 of `DataSet.java` call on the shuffle method, 
 	which rearranges the order of the DataPoints, 
 	so eah time a different 30% of the data is reserved for the test group. 
 	Since it is working with different training and test data each time, 
 	the predictions and results will change too.	
 </p>
 <p>
-	Line 200 of DataSet,java calls a method to figure out the labels of the most similar data points to the one currently being tested. 
+	Line 200 of `DataSet.java` calls a method to figure out the labels of the most similar data points to the one currently being tested. 
 	The most simple baseline to compare the model to would be using a k value of 1, so that it only looks for the most simmilar point, 
 	wihtout analyzing the other ones nearby to come up with a potentially better guess.
-	As shown in graph 1, this gives the lowest average, of 95.5% ± 1.6.
-	Graph 1 also shows that by increasing the value of k, it is possible to generate reletively more accurate predictions.
+	As shown in graph 1, this gives an average of `95.5% ± 1.6`.
+	Graph 1 also shows that the accurasy of the prediction is maximized when `k = 3`.
 </p>
 
 
@@ -30,13 +30,13 @@
 </p>
 <p>
 	Precision compares the number of correct malignant predictions to the total number of malignant predictions.
-	The baseline precision value when k=1 is 94.3% ± 5.1. 
+	The baseline precision value when `k = 1` is `94.3% ± 5.1`. 
 	It improves as k increases, as seen in graph 2.
 </p>
 <p>
 	Recall compares the number of correct malignant predictions to the total number of malignant cases.
-	The baseline recall value when k=1 is 92.5% ± 9.3.
-	As seen in graph 3, it has a maximal value when k=3 and decreases as k increases past 3.
+	The baseline recall value when `k = 1` is `92.5% ± 9.3`.
+	As seen in graph 3, it has a maximal value when `k = 3` and decreases as k increases past 3.
 </p>
 
 ```java
@@ -57,6 +57,7 @@
 <p>
 	Accuracy, precision and recall were calculated for all odd values of k from 0 to 20 
 	and printed to the console so that they could be copied into excel to produce the graphs included below.
+	Based on graphs 1 and 3, the classifier works optimally when `k = 3`.
 </p>
 
 ```java	
