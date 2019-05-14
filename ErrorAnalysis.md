@@ -55,7 +55,8 @@
 
 ## Results
 <p>
-	The calculated accuracy, precision and recall were printed to the console so that they could be copied into excel to produce the graphs included above.
+	Accuracy, precision and recall were calculated for all odd values of k from 0 to 20 
+	and printed to the console so that they could be copied into excel to produce the graphs included below.
 </p>
 
 ```java	
