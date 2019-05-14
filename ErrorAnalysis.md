@@ -14,7 +14,7 @@ the predictions and results will change too.
 Line 200 of `DataSet.java` calls a method to figure out the labels of the most similar data points to the one currently being tested. 
 The most simple baseline to compare the model to would be using a k value of 1, so that it only looks for the most simmilar point, 
 wihtout analyzing the other ones nearby to come up with a potentially better guess.
-As shown in graph 1, this gives an average of `95.5% ± 1.6`.
+As shown in graph 1, this gives an average of `95.81% ± 0.01`.
 Graph 1 also shows that the accurasy of the prediction is maximized when `k = 3`.
 
 
@@ -29,17 +29,17 @@ In the case of the breast cancer data set, there are two possible mistakes that 
 
 
 Precision compares the number of correct malignant predictions to the total number of malignant predictions.
-The baseline precision value when `k = 1` is `94.3% ± 5.1`. 
+The baseline precision value when `k = 1` is `94.85% ± 0.05`. 
 It improves as k increases, as seen in graph 2.
 
 Recall compares the number of correct malignant predictions to the total number of malignant cases.
-The baseline recall value when `k = 1` is `92.5% ± 9.3`.
+The baseline recall value when `k = 1` is `93.06% ± 0.10`.
 As seen in graph 3, it has a maximal value when `k = 3` and decreases as k increases past 3.
 
 ```java
-	accuracy[r] = (correct *100/testData.size());
-	precision[r] = (malignantMalignant*100/predictedMalignant);
-	recall[r] =  (malignantMalignant*100/actuallyMalignant);
+	accuracy[r] = (correct/testData.size());
+	precision[r] = (malignantMalignant/predictedMalignant);
+	recall[r] =  (malignantMalignant/actuallyMalignant);
 ```
 
 
@@ -59,3 +59,20 @@ Based on graphs 1 and 3, the classifier works optimally when `k = 3`.
 	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
 ```
 <img src="G1_accuracy.png" width = "33%"><img src="G2_precision.png" width = "33%"><img src="G3_recall.png" width = "33%">
+
+The following is the table of values represented in the graphs:
+
+|k|Mean Accuracy|st.dev. on Accuracy|Mean Precision|st.dev. on Precision|Mean Recall|st. dev. on Recall|
+|---|---|---|---|---|---|---|
+|1|95.811%|0.013%|94.847%|0.051%|93.060%|0.098%|
+|3|96.839%|0.011%|95.355%|0.050%|95.628%|0.068%|
+|5|96.846%|0.012%|95.534%|0.050%|95.403%|0.073%|
+|7|96.799%|0.012%|95.697%|0.046%|95.097%|0.067%|
+|9|96.604%|0.014%|95.895%|0.046%|94.303%|0.077%|
+|11|96.507%|0.014%|96.047%|0.044%|93.817%|0.077%|
+|13|96.269%|0.014%|96.207%|0.043%|92.961%|0.084%|
+|15|96.224%|0.015%|96.353%|0.039%|92.664%|0.087%|
+|17|96.086%|0.014%|96.450%|0.037%|92.195%|0.084%|
+|19|95.993%|0.015%|96.551%|0.036%|91.766%|0.092%|
+
+

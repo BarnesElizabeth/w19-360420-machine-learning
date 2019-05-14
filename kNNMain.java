@@ -102,26 +102,26 @@ for(int k = 1; k<20; k+=2){
 		
 		}
 		
-	int correct = benignBenign + malignantMalignant;
-	int actuallyMalignant = malignantMalignant + benignMalignant;
-	int predictedMalignant = malignantMalignant + malignantBenign;
+	double correct = benignBenign + malignantMalignant;
+	double actuallyMalignant = malignantMalignant + benignMalignant;
+	double predictedMalignant = malignantMalignant + malignantBenign;
 		
 		
 		
-		accuracy[r] = (correct *100/testData.size());
-		precision[r] = (malignantMalignant*100/predictedMalignant);
-		recall[r] =  (malignantMalignant*100/actuallyMalignant);
+		accuracy[r] = (correct/testData.size());
+		precision[r] = (malignantMalignant/predictedMalignant);
+		recall[r] =  (malignantMalignant/actuallyMalignant);
 		
 		
 //		System.out.println(correct + " out of " + i);
   
 	} // 1000 repetitions
 	
-	
+/**	
 	for(int i=0; i<accuracy.length; i++){
 		System.out.print(accuracy[i] + ", ");
 	}
-		
+*/		
 	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
 	System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
 	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
