@@ -42,9 +42,9 @@ The baseline recall value when `k = 1` is `93.06% ± 0.10`.
 As seen in Graph 1, it has a maximal value when `k = 3` and decreases as k increases past 3.
 
 ```java
-	accuracy[r] = (correct/testData.size());
-	precision[r] = (malignantMalignant/predictedMalignant);
-	recall[r] =  (malignantMalignant/actuallyMalignant);
+accuracy[r] = (correct/testData.size());
+precision[r] = (malignantMalignant/predictedMalignant);
+recall[r] =  (malignantMalignant/actuallyMalignant);
 ```
 
 It is possible to have the precision and recall equal 1 individually by simplifying the model.
@@ -112,11 +112,11 @@ and printed to the console so that they could be copied into excel to produce th
 Based the graphical representation of the data for every possible k, the classifier works optimally when `k = 3`.
 
 ```java	
-	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
-	System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
-	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
+System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
+System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
+System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
 ```
-<img src="allGraphsTogether.PNG">
+<img src="allGraphstogether.png">
 
 The following table includes the values of the first 10 points represented in the graphs:
 
