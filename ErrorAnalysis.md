@@ -10,8 +10,10 @@ so each time a different 30% of the data is reserved for the test group.
 Since the classifier is working with different training and test data each time, 
 the predictions and results will change too.	
 
-
 Line 200 of `DataSet.java` defines a method which looks at the labels of every data point passed into it.
+The entire breast cancer data set contains 444 malignant data points and 237 benign data points;
+however, due to the shuffle method, it is impossible to know what portion of the data will end up in the testing group or the training group.
+
 The training data set will contain 476 elements when 30% of the total data is set aside for testing.
 Since k must be odd to avoid a tie in the labels of the nearest neighbours, the highest k would have a value of 475, 
 which would generate a prediction based on nearly every element of the training set; 
@@ -33,11 +35,11 @@ In the case of the breast cancer data set, there are two possible mistakes that 
 
 Precision compares the number of correct malignant predictions to the total number of malignant predictions.
 The baseline precision value when `k = 1` is `94.85% ± 0.05`. 
-It improves as k increases, as seen in Graph 2.
+It improves as k increases, as seen in Graph 1.
 
 Recall compares the number of correct malignant predictions to the total number of malignant cases.
 The baseline recall value when `k = 1` is `93.06% ± 0.10`.
-As seen in Graph 3, it has a maximal value when `k = 3` and decreases as k increases past 3.
+As seen in Graph 1, it has a maximal value when `k = 3` and decreases as k increases past 3.
 
 ```java
 	accuracy[r] = (correct/testData.size());
@@ -107,16 +109,16 @@ the precision is `95.34% ± 0.05` and the recall is `95.63% ± 0.07`.
 
 Accuracy, precision and recall were calculated for all odd values of k from 0 to 20 
 and printed to the console so that they could be copied into excel to produce the graphs included below.
-Based on Graphs 1 and 3, the classifier works optimally when `k = 3`.
+Based the graphical representation of the data for every possible k, the classifier works optimally when `k = 3`.
 
 ```java	
 	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
 	System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
 	System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
 ```
-<img src="G1_accuracy.png" width = "33%"><img src="G2_precision.png" width = "33%"><img src="G3_recall.png" width = "33%">
+<img src="allGraphsTogether.PNG">
 
-The following is the table of values represented in the graphs:
+The following table includes the values of the first 10 points represented in the graphs:
 
 |k|Mean Accuracy|st.dev. on Accuracy|Mean Precision|st.dev. on Precision|Mean Recall|st. dev. on Recall|
 |---|---|---|---|---|---|---|
