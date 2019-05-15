@@ -14,10 +14,8 @@ the predictions and results will change too.
 Line 200 of `DataSet.java` calls a method to figure out the labels of the most similar data points to the one currently being tested. 
 The most simple baseline to compare the model to would be using a k value of 1, so that it only looks for the most simmilar point, 
 wihtout analyzing the other ones nearby to come up with a potentially better guess.
-As shown in graph 1, this gives an average of `95.81% ± 0.01`.
-Graph 1 also shows that the accurasy of the prediction is maximized when `k = 3`.
-
-
+As shown in graph 1, this gives an average accuracy of `95.81% ± 0.01`.
+Graph 1 also shows that the accuracy of the prediction is maximized when `k = 3`.
 
 ## Analysis of different error types
 
@@ -42,10 +40,56 @@ As seen in graph 3, it has a maximal value when `k = 3` and decreases as k incre
 	recall[r] =  (malignantMalignant/actuallyMalignant);
 ```
 
+It is possible to have the precision and recall equal 1 individually by simplifying the model.
 
-If the classifier were able to perfectly predict each diagnosis, then there would be no difference between the two values,
-since they would both be equal to 1. 
-The changes in all three analytical measures (accuracy, precision and recall) are affected by the value of k.
+If the classifier were to ignore the data and predict that every single tumor was malignant, 
+then the recall would reach 100%, since all of the malignant tumors would have been labeled correctly, 
+and there would not have been any incorrectly labeled malignant cases.
+Unfortunately, this leads to an accuracy and a precision of about 35%
+
+```java
+for(i = 0; i<testData.size(); i++){
+	prediction = "malignant";
+	answer = testData.get(i).getLabel();
+}
+```
+If instead, the classifier guessed that all tumors were benign, except for the first one of the first repetition, 
+then the precision would reach 100% _only if_ the malignant prediction was correct, since there only needs to be 
+one correctly labeled malignant and no incorrectly labeled benign cases.
+Unfortunately, this leads to an accuracy of about 60% and a precision of about 1%.
+
+```java
+for(i = 0; i<testData.size(); i++){
+	if(i == 0 && repetition == 0){	
+		prediction = "malignant";
+	}else{
+		prediction = "benign";
+	}
+	answer = testData.get(i).getLabel();
+}
+```
+
+Creating a random model allows for an accuracy of about 50%, a precision of about 35% and a recall of about 50%, 
+which would be one way to increase both precision and recall at the same time, 
+without needing to analyze any of the neighbours. This random model is still significantly weaker than 
+assigning `k = 1` and only looking at the nearest neighbour.
+
+```java
+for(i = 0; i<testData.size(); i++){
+	if(Math.random()>0.5){
+		prediction = "malignant";
+	}else{
+		prediction = "benign";
+	}
+	answer = testData.get(i).getLabel();
+}
+
+```
+In both of these scenarios, there are many incorrect guesses, which causes a low accuracy. 
+It is also impossible to follow both rules at once, so the precision and recall can not be maximized together,
+The only way to have 100% accuracy, precision and recall all at once 
+would be if the classifier were able to perfectly predict each diagnosis. 
+Since this is not the case, all three values are affected by the number of neighbours that the precdiction is based on (k).
 
 ## Results
 
@@ -64,15 +108,15 @@ The following is the table of values represented in the graphs:
 
 |k|Mean Accuracy|st.dev. on Accuracy|Mean Precision|st.dev. on Precision|Mean Recall|st. dev. on Recall|
 |---|---|---|---|---|---|---|
-|1|95.811%|0.013%|94.847%|0.051%|93.060%|0.098%|
-|3|96.839%|0.011%|95.355%|0.050%|95.628%|0.068%|
-|5|96.846%|0.012%|95.534%|0.050%|95.403%|0.073%|
-|7|96.799%|0.012%|95.697%|0.046%|95.097%|0.067%|
-|9|96.604%|0.014%|95.895%|0.046%|94.303%|0.077%|
-|11|96.507%|0.014%|96.047%|0.044%|93.817%|0.077%|
-|13|96.269%|0.014%|96.207%|0.043%|92.961%|0.084%|
-|15|96.224%|0.015%|96.353%|0.039%|92.664%|0.087%|
-|17|96.086%|0.014%|96.450%|0.037%|92.195%|0.084%|
-|19|95.993%|0.015%|96.551%|0.036%|91.766%|0.092%|
+|1|0.95811|0.00013|0.94847|0.00051|0.93060|0.00098|
+|3|0.96839|0.00011|0.95355|0.00050|0.95628|0.00068|
+|5|0.96846|0.00012|0.95534|0.00050|0.95403|0.00073|
+|7|0.96799|0.00012|0.95697|0.00046|0.95097|0.00067|
+|9|0.96604|0.00014|0.95895|0.00046|0.94303|0.00077|
+|11|0.96507|0.00014|0.96047|0.00044|0.93817|0.00077|
+|13|0.96269|0.00014|0.96207|0.00043|0.92961|0.00084|
+|15|0.96224|0.00015|0.96353|0.00039|0.92664|0.00087|
+|17|0.96086|0.00014|0.96450|0.00037|0.92195|0.00084|
+|19|0.95993|0.00015|0.96551|0.00036|0.91766|0.00092|
 
 

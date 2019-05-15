@@ -45,16 +45,10 @@ for(int k = 1; k<20; k+=2){
 	
 	String trainLabel = trainData.get(0).getLabel();
 	double[] trainX = trainData.get(0).getX();	
-			
- 
-	
-
 	
     // TASK 6: loop over the datapoints in the held out test set, and make predictions for Each
     // point based on nearest neighbors in training set. Calculate accuracy of model.
 	
-
-
 	KNNClassifier myNewClassifier = new KNNClassifier(k);
 
 	String prediction = myNewClassifier.predict(trainData, testData.get(0));
@@ -62,16 +56,20 @@ for(int k = 1; k<20; k+=2){
 	
 	int i = 0;
 	
-
-	
 	int benignBenign = 0;			// predicted as benign, actually benign			(true negative)
 	int benignMalignant = 0;		// predicted as benign, actually malignant		(false negative)
 	int malignantBenign = 0;		// predicted as malignant, actually benign		(false positive)
 	int malignantMalignant = 0;		// predicted as malignant, actually malignant	(true positive)
 	
-	
+	int luckyNumber = (int)(Math.random()*testData.size());
 		for(i = 0; i<testData.size(); i++){
 			prediction = myNewClassifier.predict(trainData, testData.get(i));
+//			if(Math.random()>0.5){ 	//to assign predictions randomly
+//			if(i == 0 && r==0){	//to control rate of predictions
+//			prediction = "malignant";
+//			}else{
+//			prediction = "benign";
+//			}
 			answer = testData.get(i).getLabel();
 			
 //			System.out.print("prediction: " + prediction);
