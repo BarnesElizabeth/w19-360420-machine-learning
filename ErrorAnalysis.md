@@ -31,8 +31,6 @@ In the case of the breast cancer data set, there are two possible mistakes that 
 	<li>false positive: giving the prediction of "malignant" to a tumor that is actually benign </li>
 	<li>false negative: giving the prediction of "benign" to a tumor that is actually malignant </li>
 </ul>
-
-
 Precision compares the number of correct malignant predictions to the total number of malignant predictions.
 The baseline precision value when `k = 1` is `94.85% ± 0.05`. 
 It improves as k increases, as seen in Graph 1.
@@ -46,14 +44,12 @@ accuracy[r] = (correct/testData.size());
 precision[r] = (malignantMalignant/predictedMalignant);
 recall[r] =  (malignantMalignant/actuallyMalignant);
 ```
-
 It is possible to have the precision and recall equal 1 individually by simplifying the model.
 
 If the classifier were to ignore the data and predict that every single tumor was malignant, 
 then the recall would reach 100%, since all of the malignant tumors would have been labeled correctly, 
 and there would not have been any incorrectly labeled malignant cases.
 Unfortunately, this leads to an accuracy and precision of about 35%
-
 ```java
 for(i = 0; i<testData.size(); i++){
 	prediction = "malignant";
@@ -66,7 +62,6 @@ one correctly labeled malignant and no incorrectly labeled benign cases.
 Unfortunately, this leads to an accuracy of about 60% and a precision of about 1% 
 in the case where the 1<sup>st</sup> test point actually corresponds to a malignant tumor, 
 which occurs randomly.
-
 ```java
 for(i = 0; i<testData.size(); i++){
 	if(i == 0 && repetition == 0){	
@@ -87,7 +82,6 @@ Creating a random model allows for an accuracy of about 50%, a precision of abou
 which would be one way to increase both precision and recall at the same time, 
 without needing to analyze any of the neighbours. This random model is still significantly weaker than 
 assigning `k = 1` and only looking at the nearest neighbour, and using `k = 1` is not as good as using `k = 3`.
-
 ```java
 for(i = 0; i<testData.size(); i++){
 	if(Math.random()>0.5){
@@ -110,15 +104,15 @@ the precision is `95.34% ± 0.05` and the recall is `95.63% ± 0.07`.
 Accuracy, precision and recall were calculated for all odd values of k from 0 to 20 
 and printed to the console so that they could be copied into excel to produce the graphs included below.
 Based the graphical representation of the data for every possible k, the classifier works optimally when `k = 3`.
-
 ```java	
 System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));
 System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
 System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
 ```
+
 <img src="Graphs.png">
 
-The following table includes the values of the first 10 points represented in the graphs:
+The following table includes the values of the first 10 points represented in the graph:
 
 |k|Mean Accuracy|st.dev. on Accuracy|Mean Precision|st.dev. on Precision|Mean Recall|st. dev. on Recall|
 |---|---|---|---|---|---|---|
