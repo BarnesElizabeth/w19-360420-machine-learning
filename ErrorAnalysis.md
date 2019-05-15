@@ -99,7 +99,7 @@ for(i = 0; i<testData.size(); i++){
 
 The highest k can be is 51. When this is the case, the accuracy is `92.19% ± 0.05`, 
 the precision is `97.83% ± 0.03` and the recall is `79.4% ± 0.4`. 
-The model appears to work the best with `k = 3`. 
+The model appears to work the best with a k of 3. 
 When this is the case, the accuracy is `96.84% ± 0.011`, 
 the precision is `95.34% ± 0.05` and the recall is `95.63% ± 0.07`.
 
