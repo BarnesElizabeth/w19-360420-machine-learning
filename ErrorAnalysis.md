@@ -116,7 +116,7 @@ System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy))
 System.out.print(", " + mean(precision) + ", " + standardDeviation(precision));
 System.out.println(", " + mean(recall) + ", " + standardDeviation(recall));
 ```
-<img src="allGraphstogether.png">
+<img src="allGraphsTogether.png">
 
 The following table includes the values of the first 10 points represented in the graphs:
 
