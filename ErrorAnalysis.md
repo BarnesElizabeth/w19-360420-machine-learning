@@ -6,15 +6,20 @@
 
 Lines 148-150 of `DataSet.java` call on the shuffle method, 
 which rearranges the order of the DataPoints, 
-so eah time a different 30% of the data is reserved for the test group. 
-Since it is working with different training and test data each time, 
+so each time a different 30% of the data is reserved for the test group. 
+Since the classifier is working with different training and test data each time, 
 the predictions and results will change too.	
 
 
-Line 200 of `DataSet.java` calls a method to figure out the labels of the most similar data points to the one currently being tested. 
+Line 200 of `DataSet.java` defines a method which looks at the labels of every data point passed into it.
+The training data set will contain 476 elements when 30% of the total data is set aside for testing.
+Since k must be odd to avoid a tie in the labels of the nearest neighbours, the highest k would have a value of 475, 
+which would generate a prediction based on nearly every element of the training set; 
+however, the maximum value that k can reach before causing a null pointer exception is 51.
+
 The most simple baseline to compare the model to would be using a k value of 1, so that it only looks for the most simmilar point, 
 wihtout analyzing the other ones nearby to come up with a potentially better guess.
-As shown in graph 1, this gives an average accuracy of `95.81% ± 0.01`.
+As shown in Graph 1, this gives an average accuracy of `95.81% ± 0.01`.
 Graph 1 also shows that the accuracy of the prediction is maximized when `k = 3`.
 
 ## Analysis of different error types
@@ -28,11 +33,11 @@ In the case of the breast cancer data set, there are two possible mistakes that 
 
 Precision compares the number of correct malignant predictions to the total number of malignant predictions.
 The baseline precision value when `k = 1` is `94.85% ± 0.05`. 
-It improves as k increases, as seen in graph 2.
+It improves as k increases, as seen in Graph 2.
 
 Recall compares the number of correct malignant predictions to the total number of malignant cases.
 The baseline recall value when `k = 1` is `93.06% ± 0.10`.
-As seen in graph 3, it has a maximal value when `k = 3` and decreases as k increases past 3.
+As seen in Graph 3, it has a maximal value when `k = 3` and decreases as k increases past 3.
 
 ```java
 	accuracy[r] = (correct/testData.size());
@@ -45,7 +50,7 @@ It is possible to have the precision and recall equal 1 individually by simplify
 If the classifier were to ignore the data and predict that every single tumor was malignant, 
 then the recall would reach 100%, since all of the malignant tumors would have been labeled correctly, 
 and there would not have been any incorrectly labeled malignant cases.
-Unfortunately, this leads to an accuracy and a precision of about 35%
+Unfortunately, this leads to an accuracy and precision of about 35%
 
 ```java
 for(i = 0; i<testData.size(); i++){
@@ -56,7 +61,9 @@ for(i = 0; i<testData.size(); i++){
 If instead, the classifier guessed that all tumors were benign, except for the first one of the first repetition, 
 then the precision would reach 100% _only if_ the malignant prediction was correct, since there only needs to be 
 one correctly labeled malignant and no incorrectly labeled benign cases.
-Unfortunately, this leads to an accuracy of about 60% and a precision of about 1%.
+Unfortunately, this leads to an accuracy of about 60% and a precision of about 1% 
+in the case where the 1<sup>st</sup> test point actually corresponds to a malignant tumor, 
+which occurs randomly.
 
 ```java
 for(i = 0; i<testData.size(); i++){
@@ -68,11 +75,22 @@ for(i = 0; i<testData.size(); i++){
 	answer = testData.get(i).getLabel();
 }
 ```
+In both of these scenarios, there are many incorrect guesses, which causes a low accuracy. 
+It is also impossible to follow both rules at once, so the precision and recall can not be maximized together,
+The only way to have 100% accuracy, precision and recall all at once 
+would be if the classifier were able to perfectly predict each diagnosis. 
+Since this is not the case, all three values are affected by the number of neighbours that the precdiction is based on (k).
 
 Creating a random model allows for an accuracy of about 50%, a precision of about 35% and a recall of about 50%, 
 which would be one way to increase both precision and recall at the same time, 
 without needing to analyze any of the neighbours. This random model is still significantly weaker than 
-assigning `k = 1` and only looking at the nearest neighbour.
+assigning `k = 1` and only looking at the nearest neighbour, and using `k = 1` is not as good as using `k = 3`.
+
+The highest k can be is 51. When this is the case, the accuracy is `92.19% ± 0.05`, 
+the precision is `97.83 ± 0.03` and the recall is `79.4 ± 0.4`.
+
+The model appears to work the best with `k = 3`. When this is the case, the accuracy is `95.811% ± 0.013`, 
+the precision is `94.85% ± 0.05` and the recall is `93.06% ± 0.10`.
 
 ```java
 for(i = 0; i<testData.size(); i++){
@@ -85,17 +103,12 @@ for(i = 0; i<testData.size(); i++){
 }
 
 ```
-In both of these scenarios, there are many incorrect guesses, which causes a low accuracy. 
-It is also impossible to follow both rules at once, so the precision and recall can not be maximized together,
-The only way to have 100% accuracy, precision and recall all at once 
-would be if the classifier were able to perfectly predict each diagnosis. 
-Since this is not the case, all three values are affected by the number of neighbours that the precdiction is based on (k).
 
 ## Results
 
 Accuracy, precision and recall were calculated for all odd values of k from 0 to 20 
 and printed to the console so that they could be copied into excel to produce the graphs included below.
-Based on graphs 1 and 3, the classifier works optimally when `k = 3`.
+Based on Graphs 1 and 3, the classifier works optimally when `k = 3`.
 
 ```java	
 	System.out.print(k + ", " + mean(accuracy) + ", " + standardDeviation(accuracy));

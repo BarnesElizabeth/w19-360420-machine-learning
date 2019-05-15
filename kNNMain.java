@@ -8,8 +8,10 @@ import java.util.Scanner;
 public class kNNMain{
 
 	public static void main(String... args) throws FileNotFoundException{
+for(int k = 1; k<681; k+=2){	// there are 681 data points in the data set
 
-for(int k = 1; k<20; k+=2){
+	
+
 
 	int repetitions = 1000;
 	
@@ -45,7 +47,7 @@ for(int k = 1; k<20; k+=2){
 	
 	String trainLabel = trainData.get(0).getLabel();
 	double[] trainX = trainData.get(0).getX();	
-	
+		
     // TASK 6: loop over the datapoints in the held out test set, and make predictions for Each
     // point based on nearest neighbors in training set. Calculate accuracy of model.
 	
@@ -60,6 +62,9 @@ for(int k = 1; k<20; k+=2){
 	int benignMalignant = 0;		// predicted as benign, actually malignant		(false negative)
 	int malignantBenign = 0;		// predicted as malignant, actually benign		(false positive)
 	int malignantMalignant = 0;		// predicted as malignant, actually malignant	(true positive)
+	
+	DataSet.printLabelFrequencies(allTheData);
+	
 	
 	int luckyNumber = (int)(Math.random()*testData.size());
 		for(i = 0; i<testData.size(); i++){
