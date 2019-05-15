@@ -86,12 +86,6 @@ which would be one way to increase both precision and recall at the same time,
 without needing to analyze any of the neighbours. This random model is still significantly weaker than 
 assigning `k = 1` and only looking at the nearest neighbour, and using `k = 1` is not as good as using `k = 3`.
 
-The highest k can be is 51. When this is the case, the accuracy is `92.19% ± 0.05`, 
-the precision is `97.83 ± 0.03` and the recall is `79.4 ± 0.4`.
-
-The model appears to work the best with `k = 3`. When this is the case, the accuracy is `95.811% ± 0.013`, 
-the precision is `94.85% ± 0.05` and the recall is `93.06% ± 0.10`.
-
 ```java
 for(i = 0; i<testData.size(); i++){
 	if(Math.random()>0.5){
@@ -101,8 +95,13 @@ for(i = 0; i<testData.size(); i++){
 	}
 	answer = testData.get(i).getLabel();
 }
-
 ```
+
+The highest k can be is 51. When this is the case, the accuracy is `92.19% ± 0.05`, 
+the precision is `97.83% ± 0.03` and the recall is `79.4% ± 0.4`. 
+The model appears to work the best with `k = 3`. 
+When this is the case, the accuracy is `96.84% ± 0.011`, 
+the precision is `95.34% ± 0.05` and the recall is `95.63% ± 0.07`.
 
 ## Results
 
